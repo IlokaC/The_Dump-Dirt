@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --rotateVal: 0deg;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    background: #ffbb05;
+    font-family: 'roboto', sans-serif;
+}
+
+.anim-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 9;
+    pointer-events: none;
+}
+
+.shutter {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    background: #ffbb05;
+}
+
+.shutter.top {
+    top: 0;
+    z-index: 2;
+    animation: slide-top 1s 3.5s forwards 1;
+}
+
+.shutter.top::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    bottom: 0;
+    left: -100%;
+    animation: slide-left 1s 2.25s forwards 1;
+}
+
+.shutter.bottom {
+    bottom: 0;
+    animation: slide-bottom 1s 3.5s forwards 1;
+}
+
+.circle22 {
+    position: absolute;
+    left: 50%;
+    bottom: -100px;
+    transform: translateX(-50%) rotate(-90deg);
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+    animation: rotate 1s 1.25s forwards 1;
+}
+
+.circle22:nth-child(2) {
+    width: 150px;
+    height: 150px;
+    bottom: -75px;
+
+    animation: rotate 1s 1.25s reverse 1, bg .5s 2.25s forwards 1;
+}
+
+.circle22::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;
+    height: 95%;
+    border-radius: 50%;
+    background-color: #ffbb05;
+    z-index: 2;
+}
+
+.circle22:nth-child(2)::before {
+    animation: bg .5s 2.25s forwards 1;
+}
+
+.box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: 0 0;
+    height: 2000px;
+    width: 200px;
+    background: #fff;
+    transform: rotate(0deg) skew(90deg);
+    animation: drawCircle .5s forwards 1;
+}
+
+
+.circle22:nth-child(2) .box{
+    animation: drawCircle .5s .75s forwards 1;
+}
+
+
+@keyframes drawCircle {
+    0% {
+        transform: rotate(var(--rotateVal)) skewX(90deg);
+    }
+
+    100% {
+        transform: rotate(var(--rotateVal)) skewX(10deg);
+    }
+}
+
+@keyframes rotate {
+    100% {
+        transform: translateX(-50%) rotate(-270deg);
+    }
+}
+
+@keyframes bg {
+    100% {
+        background: #fff;
+    }
+}
+
+@keyframes slide-left {
+    100%{
+        left: 100%;
+    }
+}
+
+@keyframes slide-top {
+    100%{
+        top: -100%;
+    }
+}
+
+@keyframes slide-bottom {
+    100%{
+        top: -100%;
+    }
+}
+
+/* content start */
+
+.header{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.left{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+}
+
+.content{
+    width: 80%;
+    min-width: 500px;
+}
